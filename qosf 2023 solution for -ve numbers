@@ -61,6 +61,10 @@ def find_negative_numbers(integer_list):
     # Measure the quantum registers
     grover_quantum_circuit.measure_all()
     
+    # Print the quantum circuit
+    print("Quantum Circuit for Grover's Algorithm:")
+    print(grover_quantum_circuit.draw(output="text"))
+    
     # Simulate the circuit
     simulator = AerSimulator()
     transpiled_circuit = transpile(grover_quantum_circuit, simulator)
@@ -68,7 +72,7 @@ def find_negative_numbers(integer_list):
     result = job.result()
     counts = result.get_counts()
     
- 
+    # Check if any state was measured, indicating the presence of negative values
     return bool(counts)
 
 # Example
@@ -81,8 +85,3 @@ print(B)  # Should print "False"
 C = find_negative_numbers([-15, -14, 2, -1])
 print(C)  # Should print "True"
 
-
-Output:
-True
-False
-True
